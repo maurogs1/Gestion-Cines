@@ -1,0 +1,100 @@
+﻿<Window x:Class="Views.WCustomer.AddUpdateCustomers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="clr-namespace:BaseClass.DataAccess;assembly=BaseClass"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Views.WCustomer"
+        xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:validation="clr-namespace:BaseClass.Model"
+        mc:Ignorable="d"
+        Title="Iniciar Sesion" Height="434" Width="357"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextHintingMode="Auto" BorderBrush="#FF081C3C" BorderThickness="1">
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="Data_Customer" ObjectType="{x:Type svc:WorkCustomer}" MethodName="getCustomer"></ObjectDataProvider>
+    </Window.Resources>
+
+    <Grid Margin="0,0,0,0" Loaded="Grid_Loaded">
+        <materialDesing:ColorZone Mode="PrimaryDark" Padding="6" Margin="0,0,0,0" Background="#FF1956B4">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                <Button Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                            HorizontalAlignment="Left" Click="btnClose_Click" >
+                    <materialDesing:PackIcon Kind="ArrowLeft" HorizontalAlignment="Left" Width="25" Height="25"/>
+                </Button>
+
+                <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe UI Semibold">
+                    Cliente
+                </TextBlock>
+            </StackPanel>
+        </materialDesing:ColorZone>
+
+
+        <!--Titulo-->
+        <TextBlock x:Name="tittle" HorizontalAlignment="Left" Height="26" Margin="10,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" FontSize="20" FontWeight="Bold" TextAlignment="Center" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Text="Registrar un nuevo Cliente"/>
+
+
+        <Label Content="Dni" HorizontalAlignment="Left" Height="25"  VerticalAlignment="Top" Width="129" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Margin="41.5,90.498,0,0"/>
+        <TextBox x:Name="txtDni" HorizontalAlignment="Left" Padding="3,-7,0,-10" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="129"
+                       Style="{StaticResource StyleErrorG7}" Margin="41.5,115,0,0"
+                 VerticalScrollBarVisibility="Disabled" KeyDown="NoLetters_KeyDown">
+            <TextBox.Text>
+                <Binding Path="Dni" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <!--lastname-->
+        <Label Content="Apellido" HorizontalAlignment="Left" Height="25"  VerticalAlignment="Top" Width="129" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" RenderTransformOrigin="0.521,-1.78" Margin="185,90,0,0"/>
+        <TextBox x:Name="txtLastname" HorizontalAlignment="Left" Padding="3,-7,0,-10" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="129"
+                    Style="{StaticResource StyleErrorG7}" Margin="185,115,0,0" VerticalScrollBarVisibility="Disabled" KeyDown="NoNumbers_KeyDown">
+            <TextBox.Text>
+                <Binding Path="Lastname" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+            </TextBox.Text>
+        </TextBox>
+        <!--Name-->
+        <Label Content="Nombre" HorizontalAlignment="Left" Height="22"  VerticalAlignment="Top" Width="273" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Margin="41,160.498,0,0"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Padding="3,-7,0,-10" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="272.5"
+                    Style="{StaticResource StyleErrorG7}" Margin="41.5,182.498,0,0"
+                 VerticalScrollBarVisibility="Disabled" KeyDown="NoNumbers_KeyDown">
+            <TextBox.Text>
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <!--Phone-->
+        <Label Content="Telefono" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="272.5" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Margin="41.5,224.498,0,0"/>
+        <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Padding="3,-7,0,-10" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="272.5"
+                    Style="{StaticResource StyleErrorG7}" Margin="41.5,246.498,0,0"
+                 VerticalScrollBarVisibility="Disabled" KeyDown="NoLetters_KeyDown" >
+            <TextBox.Text>
+                <Binding Path="Phone" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <!--email-->
+        <Label Content="Email" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="255.5" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Margin="41,288.498,0,0"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Padding="3,-7,0,-10" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="272.5"
+                    Style="{StaticResource StyleErrorG7}" Margin="41.5,310.498,0,0"
+                 VerticalScrollBarVisibility="Disabled">
+            <TextBox.Text>
+                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <ComboBox x:Name="cmbCustomers"  materialDesing:HintAssist.Hint="Buscar por DNI"   
+                  IsEditable="True" materialDesing:HintAssist.HintOpacity=".26"
+                               ItemsSource="{Binding customers}" DisplayMemberPath="Dni" SelectionChanged="elegirDni" Height="30" Margin="41.5,115,184.5,287"/>
+        <Button x:Name="btnUpdate" Content="Aceptar" Height="40"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="UpdateCustomer" Background="#FF1956B4" Margin="185,365.498,41,26.502"/>
+        <Button x:Name="btnAdd" Content="Aceptar" Height="40"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="addCustomer" Visibility="Visible" Margin="185,365.498,41,26.502" Background="#FF1956B4"/>
+    </Grid>
+</Window>

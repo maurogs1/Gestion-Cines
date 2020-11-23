@@ -1,0 +1,70 @@
+﻿<Window x:Class="Views.WMovie.Movies"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Views.WMovie"
+        xmlns:UC="clr-namespace:Views.WMovie"
+        mc:Ignorable="d"
+        Title="Movies" Height="450" Width="800" WindowState="Maximized">
+
+
+    <Grid>
+        <ScrollViewer Background="#FFF1F1F1">
+            <StackPanel>
+                <TextBlock Margin="10" FontSize="22" FontWeight="Medium"><Run Text="Listado de peliculas"/><InlineUIContainer>
+                        
+                    </InlineUIContainer></TextBlock>
+                <StackPanel Name="stpMovies" Margin="20 0">
+                    <ItemsControl x:Name="ListViewMovies" ItemsSource="{Binding Movie}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.2}">
+                                    <materialDesign:TransitioningContent.OpeningEffect >
+                                        <materialDesign:TransitionEffect Kind="SlideInFromLeft"/>
+                                    </materialDesign:TransitioningContent.OpeningEffect>
+                                    <StackPanel>
+                                        <UC:CardMovie Margin="6 10 6 10"  />      <!--se usa un usercontrol-->
+                                    </StackPanel>
+                                </materialDesign:TransitioningContent>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <materialDesign:DialogHost Name="dialog" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid  Width="Auto" Height="Auto" HorizontalAlignment="Center">
+                    <StackPanel x:Name="stpModalMovie">
+                        <UC:ModalMovie/>  <!-- se usa este  linea -->
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}"
+                                Margin="4" VerticalAlignment="Center" >
+                            SALIR
+                        </Button>
+                    </StackPanel>-->
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        Margin="0,0,50,50" Height="75" Width="75" Background="DarkGreen"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        ToolTip="Añadir Pelicula">
+                    <materialDesign:PackIcon Kind="Plus" Height="40" Width="40" />
+                    
+                </Button>
+            </Grid>
+        </materialDesign:DialogHost>
+    </Grid>
+</Window>

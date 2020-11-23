@@ -1,0 +1,53 @@
+﻿<Window x:Class="Views.WUser.ListUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svc="clr-namespace:BaseClass.DataAccess;assembly=BaseClass"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:local="clr-namespace:Views.WUser"
+        mc:Ignorable="d"
+        xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        TextElement.FontWeight="Normal"
+        TextElement.FontSize="11"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto" Width="776.632" Height="700" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="ListUser"  ObjectType="{x:Type svc:WorkUser}" IsAsynchronous="True" MethodName="GetAllUsers" />
+        <CollectionViewSource x:Key="ViewUser" Source="{StaticResource ResourceKey=ListUser}" Filter="eventViewUserFilter">
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription  PropertyName="Username" Direction="Ascending" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Stretch" Margin="0,0,2,0">
+        <materialDesing:ColorZone Mode="PrimaryDark" Padding="6" Margin="0,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="50">
+                <Button Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                            HorizontalAlignment="Left" Click="btnClose_Click" >
+                    <materialDesing:PackIcon Kind="ArrowLeft" HorizontalAlignment="Left" Width="20" Height="25"/>
+                </Button>
+                <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe UI Semibold">
+                    Filtro Usuarios
+                </TextBlock>
+            </StackPanel>
+        </materialDesing:ColorZone>
+        <StackPanel  HorizontalAlignment="Center" Grid.Row="0" Margin="206,62,243,562" RenderTransformOrigin="0.492,0.976" Width="318">
+            <Label Content="Usuario" Margin="10,0,150,0" Foreground="Black"/>
+            <Border BorderBrush="Black" BorderThickness="0.6" Height="38" CornerRadius="4" Margin="10,0">
+                <TextBox x:Name="txtUsername" Margin="7 7 7 7" TextChanged="TxtUsername_TextChanged" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
+            </Border>
+        </StackPanel>
+        <Button Content="Vista Previa" Name="btnPreview" Click="BtnPreview_Click" Margin="585,80,70,574" Height="Auto"/>
+        <ListView Name="List"  ItemsSource="{Binding Source={StaticResource ViewUser}}" Margin="88,152,0,10"  HorizontalAlignment="Left" Width="630">
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn  DisplayMemberBinding="{Binding Fullname}" Header="Nombre Completo" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding Username}" Header="Usuario" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding Password}" Header="Constraseña" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding Rol.Description}" Header="Rol" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

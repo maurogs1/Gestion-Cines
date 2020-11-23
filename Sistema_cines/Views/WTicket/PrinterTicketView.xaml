@@ -1,0 +1,79 @@
+﻿<Window x:Class="Views.WTicket.PrinterTicketView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Views.WTicket"
+        mc:Ignorable="d"
+        Title="PrinterTicketView" Height="233" Width="404">
+
+    <FixedDocument>
+        <PageContent>
+            <FixedPage>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="0,0,0,15">
+                        <TextBlock Text="CINEMA" FontWeight="Bold" FontSize="20" />
+                        <TextBlock Text="ALFA" FontSize="16"/>
+                        <TextBlock Text="Av. Exodo 346 CUIT: 30-12345678-9"/>
+                        <TextBlock Text="San Salvador de Jujuy IIBB"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="0,0,0,15">
+                        <TextBlock  Text="TICKET" FontWeight="Bold" FontSize="20" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Numero: "/>
+                            <TextBlock Name="txtTicketNumero" Text=""/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Fecha y Hora: "/>
+                            <TextBlock Name="txtTicketFecha" Text="28/10/2020 00:00"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Precio Total: "/>
+                            <TextBlock Name="txtPrecioTotal" Text="00,00"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,98,0,0" Grid.RowSpan="2">
+                        <TextBlock Text="Proyección" FontWeight="Bold" FontSize="16"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Pelicula: "/>
+                            <TextBlock Name="txtProyeccionPelicula" Text=""/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Fecha: "/>
+                            <TextBlock Name="txtProyeccionFecha" Text=""/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Hora: "/>
+                            <TextBlock Name="txtProyeccionHora" Text=""/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ubicacion: "/>
+                            <TextBlock Name="txtProyeccionUbicacion" Text=""/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,98,0,0" Grid.RowSpan="2">
+                        <TextBlock Text="Cliente" FontWeight="Bold" FontSize="16"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Nombre: "/>
+                            <TextBlock Name="txtClienteNombre" Text=""/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="DNI: "/>
+                            <TextBlock Name="txtClienteDni" Text=""/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Name="txtVendedorNombre" Text="Vendedor: Vendedor" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </FixedPage>
+        </PageContent>
+    </FixedDocument>
+</Window>

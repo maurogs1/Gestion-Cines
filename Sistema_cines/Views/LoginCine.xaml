@@ -1,0 +1,107 @@
+﻿<Window x:Class="Views.LoginCine"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Views"
+        mc:Ignorable="d"
+        Title="Iniciar Sesion" Height="380" Width="500"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextHintingMode="Auto" BorderBrush="#FF081C3C" BorderThickness="1" Icon="resources/img/icono logo.ico">
+    
+    <Window.Resources>
+        <Storyboard x:Key="StoryboardLogin">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-120"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-180"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-240"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-310"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-332"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="gridLogin">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="StoryboardLogo">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="80"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource StoryboardLogin}"/>
+            <BeginStoryboard Storyboard="{StaticResource StoryboardLogo}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+
+    <Grid Loaded="Grid_Loaded">
+        <Path x:Name="path" Data="M-0.5,-1 L171.5,-0.5 140.5,291 -0.5,291" Fill="#FF1956B4" HorizontalAlignment="Left" Height="381" Margin="330.5,-1,-42.5,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="212" RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+        <Grid x:Name="gridLogin" Visibility="Hidden">
+            <!--Titulo-->
+            <TextBlock HorizontalAlignment="Left" Height="26" Margin="236,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244" FontSize="20" FontWeight="Bold" TextAlignment="Center" FontFamily="/Views;component/resources/Roboto/#Roboto Medium"><Run Text="Inicia sesión con "/><Run Text="tu "/><Run Text="cuenta"/></TextBlock>
+            <!--Breve descripcion-->
+            <TextBlock HorizontalAlignment="Left" Height="40" Margin="236,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" TextAlignment="Center" FontFamily="/Views;component/resources/Roboto/#Roboto Light" RenderTransformOrigin="0.507,-0.125"><Run Text="Inici"/><Run Text="a"/><Run Text=" sesión "/><Run Text="con tu cuenta p"/><Run Text="ara realizar todas las funcionalidades del sistema."/><Run Text=" "/></TextBlock>
+
+            <!--Usuario o email-->
+            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Padding="-2,-7,0,-10" Height="30" Margin="237,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="227"
+                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                 materialDesign:HintAssist.Hint="Usuario o email"/>
+
+            <!--Contraseña-->
+            <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Padding="-2,-7,0,-10" Height="30" Margin="237,201,0,0"  VerticalAlignment="Top" Width="226"
+                     Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
+                     materialDesign:HintAssist.Hint="Contraseña"/>
+
+
+            <!--Para recordar sesion-->
+            <CheckBox Name="remember" IsChecked="False" HorizontalAlignment="Left" Height="20" Margin="237,252,0,0" VerticalAlignment="Top" Width="227" Cursor="Hand">
+                Recuerdame
+            </CheckBox>
+
+            <!--Iniciar sesion-->
+            <Button x:Name="btnLogin" Content="Iniciar Sesion" HorizontalAlignment="Left" Height="40" Margin="237,296,0,0" VerticalAlignment="Top" Width="227" Background="#FF1956B4" Foreground="White" Click="Button_Click"/>
+
+            <!--Boton salir-->
+            <Canvas HorizontalAlignment="Left" Height="25" Width="25" Margin="472.0,1,0,0" VerticalAlignment="Top"  >
+                <materialDesign:PackIcon Kind="CloseBox"  Height="25" Width="25" Canvas.Left="1" Background="White" Foreground="#FF1956B4" MouseDown="PackIcon_MouseDown" ToolTip="Cerrar" Cursor="Hand"/>
+            </Canvas>
+
+        </Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="126" Margin="10,70,0,0" VerticalAlignment="Top" Width="151" Source="resources/img/Logo Cine Alfa Cine.png" Stretch="UniformToFill" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+    </Grid>
+</Window>

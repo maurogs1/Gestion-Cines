@@ -1,0 +1,27 @@
+﻿<Window x:Class="Views.Ejemplo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:v="clr-namespace:Views.Validations"
+        xmlns:local="clr-namespace:Views"
+        mc:Ignorable="d"
+        Title="Ejemplo" Height="450" Width="800">
+    <Grid>
+        <materialDesing:Card Padding="32" Margin="16" MaxWidth="500">
+            <Grid>
+                <TextBox x:Name="UsernameTextBox" materialDesing:HintAssist.Hint="usuario"  MaxLength="20" Margin="117,42,174,236">
+                    <TextBox.Text>
+                        <Binding Path="Username" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <v:NotEmptyValidationRule ValidatesOnTargetUpdated="False" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                
+            </Grid>
+        </materialDesing:Card>
+    </Grid>
+</Window>

@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="Views.WMovie.CardMovie"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Views.WMovie"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d" Height="340" Width="240" >
+    <UserControl.Resources>
+        <XmlDataProvider x:Key="class_movie" Source="../Clasificaciones.xml" XPath="clasificacion"/>
+        <ResourceDictionary x:Key="dictionaties">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+
+    <WrapPanel Margin="0,0,0,0" >
+        <materialDesign:Flipper Background="White" Style="{StaticResource MaterialDesignCardFlipper}" Margin="0" Height="340" Width="239" >
+            <materialDesign:Flipper.FrontContent >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image x:Name="MovieCover" Source="{Binding Image}"
+                       Margin="0 0 0 0 "
+                        Stretch="UniformToFill" />
+
+                    <!---Botones para editar, eliminar y mostrar video-->
+                    <materialDesign:PopupBox Grid.Row="1" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                                             PlacementMode="LeftAndAlignMiddles" UnfurlOrientation="Horizontal" ToolTip="Opciones"
+                                             Margin="0 50 10 10" Height="45" Width="45" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                        <materialDesign:PopupBox.ToggleContent>
+                            <materialDesign:PackIcon Kind="DotsHorizontal" />
+                        </materialDesign:PopupBox.ToggleContent>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnTrailer" ToolTip="Trailer" Background="Red" Click="BtnTrailer_Click">
+                                <materialDesign:PackIcon Kind="Youtube" Height="25" Width="25"/>
+                            </Button>
+                            <Button x:Name="btnMostrarEditar" ToolTip="Editar" Command="{x:Static materialDesign:Flipper.FlipCommand}" Click="BtnMostrarEditar_Click" Background="#FF2196F3">
+                                <materialDesign:PackIcon Kind="Edit" />
+                            </Button>
+                            <Button ToolTip="Eliminar" Click="btnDelete_Click" Command="{Binding RemoveSelectedItemCommand}" Background="#CC1A1D">
+                                <materialDesign:PackIcon Kind="delete"  />
+                            </Button>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 20 20 20">
+                        <TextBlock FontWeight="Bold" Text="{Binding Title}"/>
+                        <TextBlock
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"
+                            Text="{Binding Description}"/>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Flipper.FrontContent>
+            
+            <materialDesign:Flipper.BackContent >
+                <Grid Height="Auto" Width="250" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <materialDesign:ColorZone Mode="Accent" Padding="5">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                                    Command="{x:Static materialDesign:Flipper.FlipCommand}" 
+                                    HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Right" />
+                            </Button>
+                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center"> 
+                                ACTUALIZACION
+                            </TextBlock>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <Grid Grid.Row="1" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="170" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBox x:Name="txtTitulo" materialDesign:HintAssist.Hint="Titulo" Margin="0 0 0 0"
+                                 Text="{Binding Title}" MaxLength="50"/>
+                        <TextBox x:Name="txtDescripcion" Grid.Row="1" materialDesign:HintAssist.Hint="Descripcion" Margin="0 10 0 0"
+                                 Text="{Binding Description}" MaxLength="200" />
+                        <TextBox x:Name="txtDuracion" Grid.Row="2" materialDesign:HintAssist.Hint="Duracion" Margin="0 10 0 0"
+                                 Text="{Binding Duration}" MaxLength="50"/>
+                        <TextBox x:Name="txtURLYoutube" Grid.Row="3" materialDesign:HintAssist.Hint="URL Youtube" Margin="0 10 0 0"
+                                 Text="{Binding UrlYoutube}" MaxLength="200"/>
+                        <ComboBox x:Name="cmbCategoria" Grid.Row="4" materialDesign:HintAssist.Hint="Seleccione categoria..."  Margin="0 10 0 0"
+                                  IsEditable="false" materialDesign:HintAssist.HintOpacity=".30" ItemsSource="{Binding categories}"
+                                  DisplayMemberPath="Name" SelectedValuePath="Name" Text="{Binding Category.Name}"/>
+                        <ComboBox x:Name="cmbClase" Grid.Row="5" materialDesign:HintAssist.Hint="Seleccione clase..."  Margin="0 10 0 0"
+                                  IsEditable="false" materialDesign:HintAssist.HintOpacity=".30" ItemsSource="{Binding Source={StaticResource class_movie}, XPath=tipo/@name}"
+                                  Text="{Binding Classofmovie}">
+                            <ComboBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel />
+                                </ItemsPanelTemplate>
+                            </ComboBox.ItemsPanel>
+                        </ComboBox>
+                        <StackPanel Grid.Row="6" Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="btnAddVideo" Width="50" Height="25" Margin="0,0,10,0" Click="BtnAddVideo_Click" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                                <materialDesign:PackIcon Kind="VideoAdd" Width="15"/>
+                            </Button>
+                            <Button x:Name="btnAddImage" Width="50" Height="25" Click="BtnAddImage_Click" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                                <materialDesign:PackIcon Kind="ImageAdd" Width="15"/>
+                            </Button>
+                        </StackPanel>
+                        
+                        <Button x:Name="btnAceptarEditar" Grid.Row="7" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Guarda los nuevos cambios" Margin="0 10 0 0"
+                                Command="{x:Static materialDesign:Flipper.FlipCommand}" Click="BtnAceptarEditar_Click">
+                            Aceptar
+                        </Button>
+                    </Grid>
+                </Grid>
+            </materialDesign:Flipper.BackContent>
+        </materialDesign:Flipper>
+    </WrapPanel>
+</UserControl>

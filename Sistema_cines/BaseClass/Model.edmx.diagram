@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cf04baca5d584817ab9ab85b9607922f" Name="Diagram1" ZoomLevel="109">
+        <EntityTypeShape EntityType="cinemadbModel.Category" Width="1.5" PointX="1.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.Customer" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.Group" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.Hall" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.Movie" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.Projection" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.Rol" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.Seat" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.Ticket" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cinemadbModel.User" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="cinemadbModel.FK__Movie__CategoryI__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="cinemadbModel.FK__Ticket__Customer__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="cinemadbModel.FK__Group__HallId__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="cinemadbModel.FK__Seat__GroupId__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="cinemadbModel.FK__Projectio__HallI__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="cinemadbModel.FK__Projectio__Movie__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="cinemadbModel.FK__Ticket__Projecti__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="cinemadbModel.FK__User__RolId__45F365D3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+
+    <ControlTemplate x:Key="TextBoxError">
+        <DockPanel LastChildFill="True">
+            <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0"
+                        Width="20" Height="20" CornerRadius="10"
+                        ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        FontWeight="Bold" Foreground="White" />
+            </Border>
+            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center">
+                <Border BorderBrush="Red" BorderThickness="1" />
+            </AdornedElementPlaceholder>
+        </DockPanel>
+    </ControlTemplate>
+
+
+    <Style x:Key="StyleError" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextFieldTextBox}">
+        <Setter Property="Margin" Value="4,4,10,4"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxError}"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <Binding Path="(Validation.Errors)[0].ErrorContent" RelativeSource="{x:Static RelativeSource.Self}"/>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Para textbox-->
+    <Style x:Key="StyleErrorG7" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="materialDesing:ValidationAssist.UsePopup" Value="True" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <Binding Path="(Validation.Errors)[0].ErrorContent" RelativeSource="{x:Static RelativeSource.Self}"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+   
+
+</ResourceDictionary>

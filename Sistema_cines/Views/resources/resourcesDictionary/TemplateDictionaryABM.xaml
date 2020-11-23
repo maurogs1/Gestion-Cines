@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Views.resources.resourcesDictionary">
+    <ControlTemplate x:Key="ButtonConfirm" TargetType="{x:Type Button}" >
+        
+        <Border x:Name="Overlay" CornerRadius="15" Background="#FF0039D3"><!---azul-->
+            <ContentPresenter          
+                HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter TargetName="Overlay" Property="Background" Value="#FFCF0000"/><!--rojo-->
+                <Setter TargetName="Overlay" Property="BorderBrush" Value="#FF369911"/><!---verde-->
+                <Setter TargetName="Overlay" Property="BorderThickness" Value="2"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="true">
+                <Setter TargetName="Overlay" Property="BorderBrush" Value="#FFDCDC00"/><!--amarillo-->
+                <Setter TargetName="Overlay" Property="BorderThickness" Value="2"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter TargetName="Overlay" Property="BorderThickness" Value="3"/>
+                <Setter TargetName="Overlay" Property="Background" Value="#FF7F477A"/><!---rosado-->
+                <Setter TargetName="Overlay" Property="Width" Value="104"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+
+    </ControlTemplate>
+    
+    
+    <Style x:Key="ButtonConfirmTemplate" TargetType="Button">
+        <Setter Property="Template" Value="{StaticResource ResourceKey=ButtonConfirm}"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>  
+   
+  
+
+</ResourceDictionary>

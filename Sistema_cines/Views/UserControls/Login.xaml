@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="Views.Login.Login"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextHintingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"        
+        Background="Transparent" Height="410" Width="700" Loaded="UserControl_Loaded"  >
+
+    <Grid >
+        <Rectangle RadiusY="5" RadiusX="5" Fill="White"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="73*"></ColumnDefinition>
+                <ColumnDefinition Width="67*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--transsiones o efectos de la imagen-->
+            <materialDesing:TransitioningContent HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="350,0,0,0">
+                <materialDesing:TransitioningContent.OpeningEffects>
+                    <materialDesing:TransitionEffect Kind="FadeIn" ></materialDesing:TransitionEffect>
+                    <materialDesing:TransitionEffect Kind="SlideInFromRight" Duration="0:0:1.2"></materialDesing:TransitionEffect>
+                </materialDesing:TransitioningContent.OpeningEffects>
+                <materialDesing:Card Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,35,30,35">
+                    <Image  Source="/Views;component/resources/img/ElCine.jpg" Stretch="Fill" Margin="20,20,20,20" >
+                        
+                    </Image>
+                    <!--Cambiar a una imagen de la carpeta resources-->
+                </materialDesing:Card>
+            </materialDesing:TransitioningContent>
+
+
+
+            <Grid Grid.Column="0" VerticalAlignment="Center" Margin="25,90,20,55" Height="285" >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--Transision o efecto al textblock-->
+                <materialDesing:TransitioningContent Grid.Row="0"
+                                                 HorizontalAlignment="Center"
+                                                 Margin="40,-65,45,0"
+                                                 VerticalAlignment="Top" Height="112" Width="235">
+                    <materialDesing:TransitioningContent.OpeningEffects>
+                        <materialDesing:TransitionEffect Kind="ExpandIn" Duration="0:0:1.2"></materialDesing:TransitionEffect>
+                    </materialDesing:TransitioningContent.OpeningEffects>
+
+
+                    <TextBlock HorizontalAlignment="Center" FontSize="38" FontFamily="Candara" 
+                           FontWeight="SemiBold" Margin="0,65,0,0" Foreground="#FF252525"
+                           >
+                Bienvenidos
+                    </TextBlock>
+
+
+                </materialDesing:TransitioningContent>
+
+
+                <!--transision o efecto para stacpanel de usuario-->
+                <materialDesing:TransitioningContent Grid.Row="1" Margin="40 20 0 0" HorizontalAlignment="Left">
+
+                    <materialDesing:TransitioningContent.OpeningEffects>
+                        <materialDesing:TransitionEffect Kind="SlideInFromLeft" Duration="0:0:1.2"></materialDesing:TransitionEffect>
+                    </materialDesing:TransitioningContent.OpeningEffects>
+
+                    <!--Stacpanel para el usuario-->
+                    <StackPanel Orientation="Horizontal" Width="180" >
+                        <materialDesing:PackIcon Kind="Account"
+                                         Foreground="{Binding ElementName=txtUsername, Path=BorderBrush}"
+                                         VerticalAlignment="Center" Margin="0 10 5 0" />
+                        <TextBox x:Name="txtUsername" 
+                         materialDesing:HintAssist.Hint="Usuario" Width="160" FontSize="14"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,-4,0,0"/>
+                    </StackPanel>
+                </materialDesing:TransitioningContent>
+
+
+                <!--transision o efecto para stacpanel de la contraseña-->
+                <materialDesing:TransitioningContent Grid.Row="2" HorizontalAlignment="Left" Margin="40 20 0 0">
+                    <materialDesing:TransitioningContent.OpeningEffects>
+                        <materialDesing:TransitionEffect Kind="SlideInFromRight" Duration="0:0:1.2"></materialDesing:TransitionEffect>
+                    </materialDesing:TransitioningContent.OpeningEffects>
+                    <!--Stacpanel para la contraseña-->
+                    <StackPanel Orientation="Horizontal" Width="180" >
+                        <materialDesing:PackIcon Kind="Key" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                         Margin="0 10 5 0"
+                                         Foreground="{Binding ElementName=txtPassword, Path=BorderBrush}">
+                        </materialDesing:PackIcon>
+
+                        <PasswordBox materialDesing:HintAssist.Hint="Contraseña" 
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             x:Name="txtPassword" Width="160" FontSize="14">
+
+                        </PasswordBox>
+                    </StackPanel>
+                </materialDesing:TransitioningContent>
+
+
+                <!--efecto para el checkbox y boton-->
+                <materialDesing:TransitioningContent Grid.Row="3" HorizontalAlignment="Left" Margin="40,10,0,0">
+                    <materialDesing:TransitioningContent.OpeningEffects>
+                        <materialDesing:TransitionEffect Kind="SlideInFromBottom" Duration="0:0:1.2"></materialDesing:TransitionEffect>
+                    </materialDesing:TransitioningContent.OpeningEffects>
+
+                    <!--Stacpanel para checkbox y boton de acceder-->
+                    <StackPanel  Orientation="Horizontal" Height="40">
+                        <CheckBox x:Name="remember" Style="{StaticResource MaterialDesignCheckBox}" Margin="0,0,0,1" >
+                            Recordar
+                        </CheckBox>
+
+                        <Button x:Name="btnLogin" Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="36" Width="117"
+                        materialDesing:ButtonAssist.CornerRadius="20" 
+                        ToolTip="Iniciar sesion" Margin="45,1,0,1" Click="Button_Click">
+                            <TextBlock Text="ACCEDER" />
+                        </Button>
+                    </StackPanel>
+                </materialDesing:TransitioningContent>
+
+            </Grid>
+
+            <!--opciones para registrarse y salir-->
+            <StackPanel HorizontalAlignment="Left" Height="40" Margin="20,35,0,0" VerticalAlignment="Top" Width="40" >
+                <materialDesing:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" Height="40" >
+                    <ListBox>
+                        <ListBoxItem Cursor="Hand">
+                            Registrarse
+                        </ListBoxItem>
+                        <ListBoxItem Cursor="Hand" Selected="ListBoxItem_Selected" >
+                            Salir
+                        </ListBoxItem>
+                    </ListBox>
+                </materialDesing:PopupBox>
+            </StackPanel>
+            <Rectangle Fill="#FFE41E1E" HorizontalAlignment="Left" Height="47" Margin="65,70,0,0" Stroke="Black" VerticalAlignment="Top" Width="5"/>
+
+        </Grid>
+    </Grid>
+
+
+</UserControl>

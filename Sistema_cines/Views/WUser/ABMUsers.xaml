@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Views.WUser.ABMUsers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Views.WUser"
+             mc:Ignorable="d" 
+             Height="500" Width="Auto"
+             Background="White">
+
+    <!--Height="Auto" Width="Auto" -->
+    <Grid >
+        <!--Titulo-->
+
+        <materialDesing:Card Margin="0,28,0,359" materialDesing:ShadowAssist.ShadowDepth="Depth1">
+            <Grid Margin="0,0,0,22">
+                <TextBlock x:Name="tittle" HorizontalAlignment="Left" Height="26" Margin="10,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="716" FontSize="20" FontWeight="Bold" TextAlignment="Center" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" 
+                   Text="GESTION DE USUARIOS" materialDesing:ShadowAssist.ShadowDepth="Depth2"/>
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,64,0,-15" >
+                    <Button Content="Nuevo" Name="btnNuevo" Click="BtnNuevo_Click" Background="#FF25892E" Margin="5" />
+                    <Button Content="Eliminar" Name="btnEliminar" Click="BtnEliminar_Click" Margin="5" Background="#FFBF3232"/>
+                    <Button Content="Cancelar" Name="btnCancelar" Click="BtnCancelar_Click" Margin="5" IsEnabled="False"/>
+                    <Button Content="Guardar" Name="btnGuardar" Click="BtnGuardar_Click" Margin="5,0,50,0" IsEnabled="False"/>
+                    <Button Content="Filtro" x:Name="btnFilter" Click="BtnFilterUser" Background="#FF25892E" Margin="5" Width="75" />
+                    <Button Content="&lt;&lt;" Name="btnPrimero" Width="50" Click="BtnPrimero_Click" Margin="5"/>
+                    <Button Content="&lt;" Name="btnAnterior" Width="50" Click="BtnAnterior_Click" Margin="5"/>
+                    <Button Content="&gt;" Name="btnSiguiente" Width="50" Click="BtnSiguiente_Click" Margin="5"/>
+                    <Button Content="&gt;&gt;" Name="btnUltimo" Width="50" Click="BtnUltimo_Click" Margin="5"/>
+                </StackPanel>
+            </Grid>
+        </materialDesing:Card>
+
+
+        <Grid Margin="28,163,398,28" x:Name="stpUsers">
+            <Label Content="Nombre completo" HorizontalAlignment="Left" Height="25"  VerticalAlignment="Top" Width="224" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Margin="41.5,21.498,0,0"/>
+            <TextBox x:Name="txtFullname" HorizontalAlignment="Left" Padding="3,-7,0,-10" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="224"
+                Style="{StaticResource StyleErrorG7}" VerticalScrollBarVisibility="Disabled" 
+               KeyDown="NoNumbers_KeyDown"
+                KeyUp="TxtFullname_KeyUp" Text="{Binding Fullname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Margin="41.5,46.498,0,0"/>
+            <Label Content="Nombre de usuario" HorizontalAlignment="Left" Height="25"  VerticalAlignment="Top" Width="224" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Margin="41.5,93.498,0,0"/>
+            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Padding="3,-7,0,-10" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="224"
+                Style="{StaticResource StyleErrorG7}" VerticalScrollBarVisibility="Disabled" 
+                KeyUp="TxtUsername_KeyUp" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Margin="41.5,118.498,0,0"  />
+            <Label Content="Contraseña" HorizontalAlignment="Left" Height="25"  VerticalAlignment="Top" Width="224" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Margin="41.5,164.498,0,0"/>
+            <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Padding="3,-7,0,-10" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="224"
+                Style="{StaticResource StyleErrorG7}" VerticalScrollBarVisibility="Disabled" 
+              
+                KeyUp="TxtPassword_KeyUp" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Margin="41.5,189.498,0,0"/>
+            <Label Content="Rol" HorizontalAlignment="Left" Height="25"  VerticalAlignment="Top" Width="224" FontFamily="/Views;component/resources/Roboto/#Roboto Medium" Margin="41.5,231.498,0,0"/>
+            <ComboBox x:Name="cmbRol" Text="{Binding Rol.Description}" ItemsSource="{Binding roles}" DisplayMemberPath="Description" DropDownClosed="CmbRol_DropDownClosed" Cursor="Hand" Margin="41.5,256.498,45.033,24.502" />
+
+     
+        </Grid>
+    </Grid>
+</UserControl>

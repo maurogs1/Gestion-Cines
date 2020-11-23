@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Views.UserControls.CRUDCustomer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Views.WCustomer"
+             mc:Ignorable="d" 
+             xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             TextElement.FontWeight="Normal"
+             TextElement.FontSize="11"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto" Width="824" Height="700">
+
+    <Grid HorizontalAlignment="Stretch" >
+        <ListView x:Name="List" Margin="10,10,0,10"  HorizontalAlignment="Left" Width="655">
+            <ListView.View  >
+                <GridView x:Name="gw" >
+                    <GridViewColumn  DisplayMemberBinding="{Binding Dni}" Header="Dni" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding Lastname}" Header="Apellido" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding Name}" Header="Nombre" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding Phone}" Header="Telefono" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding Email}" Header="Email" />
+                    <GridViewColumn Header="Acciones">
+
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <materialDesing:PopupBox  PlacementMode="BottomAndAlignRightEdges"
+                                                             UnfurlOrientation="Horizontal"
+                                                              Margin="30 0 0 0">
+                                    <ListBox>
+                                        <!--<ListBoxItem x:Name="itemUpdate" Selected="ListBoxItemUpdateC_Selected">
+                                            Actualizar
+                                        </ListBoxItem>-->
+                                        <ListBoxItem x:Name="itemDelete" Selected="ListBoxItemDeleteC_Selected">
+                                            Eliminar
+                                        </ListBoxItem>
+                                    </ListBox>
+                                </materialDesing:PopupBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button x:Name="btnAdd" Margin="695,10,34,658"  Click="BtnAdd_Click" 
+                 RenderTransformOrigin="0.521,0.118" Width="95"  Content="Nuevo">
+            
+        </Button>
+
+        <Button x:Name="btnUpdate" Margin="695,88,34,580"  Click="BtnUpdate_Click" 
+                 RenderTransformOrigin="0.521,0.118" Width="95"  Content="Editar">
+
+        </Button>
+
+
+    </Grid>
+
+
+
+</UserControl>

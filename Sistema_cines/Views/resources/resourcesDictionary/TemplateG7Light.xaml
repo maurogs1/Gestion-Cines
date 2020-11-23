@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:local="clr-namespace:Views.resources.resourcesDictionary">
+
+
+    <!--BACKGROUND LIGHT-->
+    <Style x:Key="windowG7Light" TargetType="Window" >  
+        <Setter Property="Background" Value="#ACB8C5"/>
+    </Style>
+
+    <!--BACKGROUND LIGHT-->
+    <Style x:Key="expanderG7Light" TargetType="Expander" >
+        <Setter Property="Background" Value="#203037"/>
+        <Setter Property="Foreground" Value="#FFAD00"/>
+    </Style>
+</ResourceDictionary>

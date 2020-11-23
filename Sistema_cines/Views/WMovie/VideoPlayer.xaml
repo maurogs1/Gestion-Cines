@@ -1,0 +1,47 @@
+﻿<Window x:Name="drop" x:Class="Views.WMovie.VideoPlayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Views.WMovie"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" Icon="/resources/img/icono logo.ico"
+        Title="VideoPlayer" Height="475" Width="650" MinHeight="475" MinWidth="650" MaxHeight="475" MaxWidth="650" Background="Black" 
+        AllowDrop="True" Drop="Drop_Drop" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <materialDesign:ColorZone Mode="PrimaryDark" Padding="-3" Margin="0,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="50">
+                <Button Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                            HorizontalAlignment="Left" Click="BtnClose_Click" >
+                    <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Left" Width="20" Height="25"/>
+                </Button>
+                <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe UI Semibold">
+                    Avance
+                </TextBlock>
+            </StackPanel>
+        </materialDesign:ColorZone>
+        <MediaElement Name="mediaElementTrailer" HorizontalAlignment="Center" Height="360" Margin="0,45,0,0" VerticalAlignment="Top" Width="640" MediaOpened="MediaElementTrailer_MediaOpened"/>
+        <Slider x:Name="sliderVideo" Height="20" VerticalAlignment="Bottom" Margin="0,0,0,45" ValueChanged="SliderVideo_ValueChanged"/>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,10,5" Width="600" Height="45">
+            <Button x:Name="btnYoutube" HorizontalAlignment="Left" Background="red" BorderBrush="Red" ToolTip="Ver en Youtube"
+                    Width="55" Margin="10,0,0,0" Click="BtnYoutube_Click">
+                <Border CornerRadius="30">
+                    <materialDesign:PackIcon  Kind="Youtube" Width="25" Height="25" />
+                </Border>
+            </Button>
+            <Button x:Name="btnPlay" HorizontalAlignment="Left" Click="BtnPlay_Click" ToolTip="Play/Pausa"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="55" Margin="180,0,0,0">
+                <materialDesign:PackIcon  Kind="PlayPause" Width="25" Height="25" />
+            </Button>
+            <Button x:Name="btnStop" HorizontalAlignment="Left" Click="BtnStop_Click" ToolTip="Stop"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="55" Margin="10,0,0,0">
+                <materialDesign:PackIcon Kind="Stop" Width="25" Height="25"/>
+            </Button>
+            <StackPanel VerticalAlignment="Center">
+                <Slider x:Name="sliderVolume" Width="100" HorizontalAlignment="Right" Margin="130,0,0,0"
+                        Maximum="1" LargeChange="0.1" SmallChange="0.01" Value="1" ValueChanged="SliderVolume_ValueChanged"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

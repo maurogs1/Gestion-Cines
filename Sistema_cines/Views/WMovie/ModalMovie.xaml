@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="Views.WMovie.ModalMovie"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Views.WMovie"
+             mc:Ignorable="d" Height="583" Width="289" >
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Grid Name="mm" Margin="0 0 0 0" Background="White" >
+
+        <materialDesign:ColorZone Mode="PrimaryDark" Padding="6" Margin="0,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                <Button x:Name="btnCancelMovie" Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                            HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                    <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Left" Width="20" Height="25"/>
+                </Button>
+
+                <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe UI Semibold">
+                    Pelicula
+                </TextBlock>
+            </StackPanel>
+        </materialDesign:ColorZone>
+
+        <Grid Margin="0,47,0,0">
+            <ScrollViewer Background="#FFF1F1F1">
+                <Grid Margin="20,0,20,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="530" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="130" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <!--Stackpanel para el TITULO-->
+                    <StackPanel  HorizontalAlignment="Stretch" Grid.Row="0" Margin="0 0 0 0" RenderTransformOrigin="0.492,0.976">
+                        <TextBox x:Name="txtTitulo" MaxLength="50" Margin="7 7 7 7" materialDesign:HintAssist.Hint="Titulo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center">
+                            <TextBox.Text>
+                                <Binding Path="txtTitulo" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <!--Stackpanel para DESCRIPCION-->
+                    <StackPanel  HorizontalAlignment="Stretch" Grid.Row="1" Margin="0 0 0 0" RenderTransformOrigin="0.492,0.976">
+                        <TextBox x:Name="txtDescripcion" Margin="7 0 7 7" MaxLength="200" materialDesign:HintAssist.Hint="Descripción" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center">
+                            <TextBox.Text>
+                                <Binding Path="txtDescripcion" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                    
+                    <!--Stackpanel para DURACION-->
+                    <StackPanel  HorizontalAlignment="Stretch" Grid.Row="2" Margin="0 0 0 0" RenderTransformOrigin="0.492,0.976">
+                        <TextBox x:Name="txtDuracion" Margin="7 0 7 7" MaxLength="50" materialDesign:HintAssist.Hint="Duración" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center">
+                            <TextBox.Text>
+                                <Binding Path="txtDuracion" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <!--Stackpanel para el CATEGORIA-->
+                    <StackPanel  HorizontalAlignment="Stretch" Grid.Row="3" Margin="0 0 0 0" RenderTransformOrigin="0.492,0.976">
+                        <ComboBox x:Name="cmbCategory" materialDesign:HintAssist.Hint="Seleccione categoria..." IsEditable="false"
+                           Margin="7 7 7 7"  materialDesign:HintAssist.HintOpacity=".26"
+                               ItemsSource="{Binding categories}" DisplayMemberPath="Name" SelectedValuePath="Name">
+                            <ComboBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel />
+                                </ItemsPanelTemplate>
+                            </ComboBox.ItemsPanel>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--Stackpanel para el CLASE DE PELICULA-->
+                    <StackPanel  HorizontalAlignment="Stretch" Grid.Row="4" Margin="0 0 0 0" RenderTransformOrigin="0.492,0.976">
+                        <StackPanel.Resources >
+                            <!--recursos para el combobox-->
+                            <XmlDataProvider x:Key="class_movie" Source="../Clasificaciones.xml" XPath="clasificacion"/>
+                        </StackPanel.Resources>
+                        <ComboBox  x:Name="cmbClassMovie" materialDesign:HintAssist.Hint="Seleccionar clase..." Margin="7 7 7 7"
+                              materialDesign:HintAssist.HintOpacity=".26" IsEditable="false"
+                               ItemsSource="{Binding Source={StaticResource class_movie}, XPath=tipo/@name}" >
+                            <ComboBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel />
+                                </ItemsPanelTemplate>
+                            </ComboBox.ItemsPanel>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--Stackpanel para urlYoutube-->
+                    <StackPanel  HorizontalAlignment="Stretch" Grid.Row="5" Margin="0 0 0 0" RenderTransformOrigin="0.492,0.976">
+                        <TextBox x:Name="txtUrlYoutube" Margin="7 0 7 7" MaxLength="200" materialDesign:HintAssist.Hint="URL Youtube" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center">
+                            <TextBox.Text>
+                                <Binding Path="txtUrlYoutube" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                    
+                    <!--Stackpanel para URLVIDEO-->
+                    <StackPanel  HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="6" Margin="0 0 0 0" PreviewMouseDown="BtnVideo_Click" RenderTransformOrigin="0.492,0.976">
+                        <TextBlock x:Name="txtUrlVideo" Margin="7 0 7 7" Text="Seleccionar video..." />
+                    </StackPanel>
+
+                    <!--Stacpanel para el IMAGEN DE PELICULA-->
+                    <StackPanel  Grid.Row="7"  >
+                        <TextBlock  Text="  Seleccionar imagen..." Height="22" PreviewMouseDown="BtnImage_Clicked" Cursor="Hand" />
+                        <Image x:Name="ImageMovie" Source="{Binding SourceUri}" Stretch="UniformToFill" Margin="7,7,7,7" RenderTransformOrigin="0.5,0.5" />
+                    </StackPanel>
+
+                    <!--Stacpanel para el Boton Aceptar-->
+                    <Button Grid.Row="8" Click="BtnAceptMovie_Click" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" 
+                            Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                        ACEPTAR
+                    </Button>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        <Button x:Name="BtnImage" Margin="228,350,10,114"  Click="BtnImage_Clicked" RenderTransformOrigin="0.5,0.5" >
+            <materialDesign:PackIcon Kind="ImageAdd" Width="20">
+            </materialDesign:PackIcon>
+        </Button>
+        <Button x:Name="BtnVideo" Margin="228,270,10,114" Click="BtnVideo_Click" RenderTransformOrigin="0.5,0.5" >
+            <materialDesign:PackIcon Kind="VideoAdd" Width="20"/>
+        </Button>
+    </Grid>
+</UserControl>

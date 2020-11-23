@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="Views.WMovie.ListCardMovies"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Views.WMovie"
+             xmlns:UC="clr-namespace:Views.WMovie"
+             mc:Ignorable="d" MinHeight="600" MinWidth="800"
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid >
+        <StackPanel>
+            <TextBlock Margin="10" FontSize="22" FontWeight="Medium"><Run Text="Listado de peliculas"/>
+                <InlineUIContainer></InlineUIContainer>
+            </TextBlock>
+            <StackPanel Name="stpMovies" Margin="20 0 0 0 ">
+                <ItemsControl x:Name="ListViewMovies" ItemsSource="{Binding Movie}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.2}">
+                                <materialDesign:TransitioningContent.OpeningEffect >
+                                    <materialDesign:TransitionEffect Kind="SlideInFromLeft"/>
+                                </materialDesign:TransitioningContent.OpeningEffect>
+                                <UC:CardMovie Margin="0 0 10 0"/>
+                                <!--se usa un usercontrol-->
+                            </materialDesign:TransitioningContent>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+        </StackPanel>
+
+        <materialDesign:DialogHost Name="dialog" BorderBrush="{DynamicResource MaterialDesignDivider}" >
+            <materialDesign:DialogHost.DialogContent >
+                <Grid HorizontalAlignment="Center">
+                    <StackPanel x:Name="stpModalMovie">
+                        <UC:ModalMovie/>
+                        <!-- se usa este  linea -->
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+
+            <!--<Grid>
+                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        Margin="0,0,50,50" Height="75" Width="75" Background="DarkGreen"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        ToolTip="Añadir Pelicula">
+                    <materialDesign:PackIcon Kind="Plus" Height="40" Width="40" />
+
+                </Button>
+            </Grid>-->
+
+            <!--agregar nuevo-->
+            <StackPanel Margin="0,10,20,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+
+                <Button x:Name="btnFirstPage" materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        ToolTip="Primera Pagina" Content="1" Click="BtnFirstPage_Click" >
+                </Button>
+                <Button x:Name="btnSecondPage" materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        ToolTip="Segunda Pagina" Content="2" Click="BtnSecondPage_Click" >
+                </Button>
+                <Button x:Name="btnGridStyle" materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        ToolTip="Vista en formato de Grilla" Click="BtnGridStyle_Click">
+                    <materialDesign:PackIcon Kind="Grid" />
+                </Button>
+                <Button x:Name="btnListStyle" materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        ToolTip="Vista en formato de lista">
+                    <materialDesign:PackIcon Kind="FormatListBulleted" />
+                </Button>
+                <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" 
+                        materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                        Background="Green" BorderBrush="Green" Margin="10,0,0,0"
+                        ToolTip="Añadir Pelicula" Content="Nuevo" >
+                </Button>
+            </StackPanel>
+
+        </materialDesign:DialogHost>
+    </Grid>
+</UserControl>
+
